@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  table
+    tr
+      th name
+      th author
+      th pixiv
+    each v,i in circles
+      tr
+        td #{v.name}
+        td #{v.author}
+        td #{v.pixivURL}
