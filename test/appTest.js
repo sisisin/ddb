@@ -32,3 +32,16 @@ describe('routing circle', () => {
       });
   });
 });
+
+describe('routing checks', () => {
+  it('should respond 200 with message', (done) => {
+    request(app)
+      .get('/checks')
+      .end((err, ret) => {
+        if (err) throw err;
+
+        expect(ret.res.statusCode).to.equal(200);
+        done();
+      });
+  });
+});

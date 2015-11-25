@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 
 import { routes } from './routes/index';
 import { circles } from './routes/circles';
+import { checks } from './routes/checks';
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/circles', circles);
+app.use('/checks', checks);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

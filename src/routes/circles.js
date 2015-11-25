@@ -29,7 +29,7 @@ const postCircles = (req, res, next) => {
   return db.Circle
     .upsert({ name, author, pixivURL })
     .then((circle) => {
-      res.redirect('circles', { title :'circles'});
+      res.redirect('circles', { title: 'circles' });
     })
     .catch((err) => {
       res.render('index', { title: 'error' });
@@ -37,7 +37,7 @@ const postCircles = (req, res, next) => {
 };
 
 const newCircles = (req, res, next) => {
-  res.render('circlesNew', { title: 'hello' });
+  res.render('circlesNew', { title: 'new' });
 };
 
 router.get('/', getCircles);
