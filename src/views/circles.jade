@@ -3,13 +3,22 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  table
+  a(href='/circles/new')
+    button(class='btn waves-effect waves-light blue lighten-5', type='submit', name='action')
+      i(class='material-icons') regster circle
+  table(class='striped highlight')
     tr
-      th name
-      th author
-      th pixiv
-    each v,i in circles
-      tr
-        td #{v.name}
-        td #{v.author}
-        td #{v.pixivURL}
+      thead
+        th name
+        th author
+        th pixiv
+        th
+    tbody
+      each v,i in circles
+        tr
+          td #{v.name}
+          td #{v.author}
+          td
+            a(href='#{v.pixivURL}', target='_blank') #{v.pixivURL}
+          td
+            a(href='/circles/edit') edit data 
