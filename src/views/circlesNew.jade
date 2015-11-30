@@ -3,14 +3,17 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form(action='/circles' method='post')
-    div
-      | name:
-      input(type='text' name='name')
-    div
-      | author:
-      input(type='text' name='author')
-    div
-      | pixiv:
-      input(type='text' name='pixivURL')
-    input(type='submit')
+  div(class='row')
+    form(action='/circles' method='post')
+      div(class='row')
+        div(class='input-field')
+          label(for='name') name
+          input(id='name' type='text' name='name' class='validate')
+          
+      div
+        | author:
+        input(type='text' name='author')
+      div
+        | pixiv:
+        input(type='text' name='pixivURL')
+      input(type='submit')
