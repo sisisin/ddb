@@ -45,3 +45,16 @@ describe('routing checks', () => {
       });
   });
 });
+
+describe('routing post "checks/new"', () => {
+  it('should respond 303', (done) => {
+    request(app)
+      .post('/checks/new')
+      .end((err, ret) => {
+        if (err) throw err;
+
+        expect(ret.res.statusCode).to.equal(303);
+        done();
+      });
+  });
+});

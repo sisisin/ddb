@@ -4,7 +4,7 @@ const router = express.Router();
 const _ = require('lodash');
 const db = require('../models/');
 
-/* GET users listing. */
+
 const getChecks = (req, res, next) => {
   return db.Check.findAll()
     .then((checks) => {
@@ -19,7 +19,12 @@ const getChecks = (req, res, next) => {
     });
 };
 
+const postChecks = (req, res, next) => {
+  res.redirect(303, '/circles');
+};
+
 router.get('/', getChecks);
+router.post('/new', postChecks);
 
 
 export { router as checks };

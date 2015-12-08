@@ -4,6 +4,25 @@ block content
   h1= title
   p Welcome to #{title}
 
+  div(class='row')
+    form(class='col s12')
+      div(class='row')
+        div(class='input-field s6')
+          input(id='eventName' name='eventName' type='text' class='validate')
+          label(for='eventName') eventName
+        div(class='input-field s6')
+          input(id='spPrefix' name='spPrefix' type='text' class='validate')
+          label(for='spPrefix') spPrefix
+        div(class='input-field s6')
+          input(id='spNo' name='spNo' type='text' class='validate')
+          label(for='spNo') spNo
+        div(class='input-field s6')
+          input(id='spAlphabet' name='spAlphabet' type='text' class='validate')
+          label(for='spAlphabet') spAlphabet
+        input(type='text' name='circleID' value='1')
+        button(class='btn waves-effect waves-light' type='submit' name='action') Submit
+          i(class='material-icons') send
+
   table(class='striped highlight')
     tr
       thead
@@ -22,4 +41,4 @@ block content
           td
             a(href='#{check.notificationURL}' target='_blank') #{check.notificationURL}
           td
-            a(href='/checks/edit') edit data 
+            a(href='/checks/edit') edit data
