@@ -3,3 +3,23 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  table(class='striped highlight')
+    tr
+      thead
+        th space
+        th circle name
+        th url
+        th
+    tbody
+      each check,i in checks
+        tr
+          td
+            - var sp = check.spPrefix + '-' + check.spNo + check.spAlphabet
+            #{sp}
+          td
+            #{check.CircleId}
+          td
+            a(href='#{check.notificationURL}' target='_blank') #{check.notificationURL}
+          td
+            a(href='/checks/edit') edit data 

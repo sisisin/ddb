@@ -21,7 +21,7 @@ describe('routing index', () => {
 });
 
 describe('routing circle', () => {
-  it('should respond 200 with message', (done) => {
+  it('should respond 200', (done) => {
     request(app)
       .get('/circles')
       .end((err, ret) => {
@@ -34,7 +34,7 @@ describe('routing circle', () => {
 });
 
 describe('routing checks', () => {
-  it('should respond 200 with message', (done) => {
+  it('should respond 200', (done) => {
     request(app)
       .get('/checks')
       .end((err, ret) => {
