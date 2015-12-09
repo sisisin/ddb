@@ -20,12 +20,26 @@ const getChecks = (req, res, next) => {
 };
 
 const postChecks = (req, res, next) => {
-  res.redirect(303, '/circles');
+  const { eventName, spPrefix, spNo, spAlphabet, CircleId, notificationURL } = req.body;
+  if (eventName || spPrefix || spNo || spAlphabet || CircleId || notificationURL) {
+  } else {
+    res.redirect(303, '/circles?err=err');
+  }
+  
+  return db.Check
+    .upsert({ eventName, spPrefix, spNo, spAlphabet, CircleId, notificationURL })
+    .then((check) => {
+      res.redirect(303, '/circles');
+    })
+    .catch((err) => {
+      res.redirect(303, '/circles?err=err');
+    });
 };
+
 
 router.get('/', getChecks);
 router.post('/new', postChecks);
 
 
 export { router as checks };
-export { getChecks };	// for test
+export { getChecks, postChecks };	// for test
