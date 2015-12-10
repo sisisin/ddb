@@ -1,8 +1,9 @@
 /* eslint no-unused-expressions:0 */
 import { expect } from 'chai';
 import sinon from 'sinon';
+const db = require('../../src/models/');
 
-import { getChecks } from '../../src/routes/checks';
+import { getChecks, postChecks } from '../../src/routes/checks';
 
 describe('getChecks', () => {
   let req, res, spy;
