@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Event = sequelize.define('Event', {
-    eventID: DataTypes.INTEGER,
+    eventName: DataTypes.STRING,
     eventDate: DataTypes.DATE
   }, {
     classMethods: {
