@@ -1,6 +1,5 @@
 /* eslint new-cap:0 */
-import express from 'express';
-const router = express.Router();
+const router = require('express').Router();
 const _ = require('lodash');
 const db = require('../models/');
 
@@ -13,11 +12,18 @@ const getChecks = (req, res, next) => {
       send = {};
       send.title = 'checks';
       send.checks = _.map(checks, (check) => {
+//        const eventName = await fetchEventName(check);
         return _.pick(check.dataValues, ['eventName', 'spPrefix', 'spNo', 'spAlphabet', 'CircleId', 'notificationURL']);
       });
+
       res.render('checks', send);
     });
 };
+
+async function fetchEventName(check) {
+  const event = await check.getEvent();
+  return _.pick(event.dataValues, ['eventName']);
+}
 
 const postChecks = (req, res, next) => {
   const { eventName, spPrefix, spNo, spAlphabet, CircleId, notificationURL } = req.body;
