@@ -23,8 +23,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Check.belongsTo(models.Circle);
-        Check.belongsTo(models.Event);
+        Check.belongsTo(models.Circle, { as: 'circle', constraints: false });
+        Check.belongsTo(models.Event, { as: 'event', constraints: false });
       }
     }
   });
