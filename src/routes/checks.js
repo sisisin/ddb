@@ -1,18 +1,22 @@
 /* eslint new-cap:0 */
+require('babel-polyfill');
 const router = require('express').Router();
 const _ = require('lodash');
 const db = require('../models/');
 
+async function fetchEventName(check) {
+  return await check.getEvent().then((event) => event.dataValues.eventName);
+}
 
 const getChecks = (req, res, next) => {
   return db.Check.findAll()
-    .then((checks) => {
+    .then(async(checks) => {
       let send;
-
+      console.log(await fetchEventName(checks[0]));
       send = {};
       send.title = 'checks';
       send.checks = _.map(checks, (check) => {
-//        const eventName = await fetchEventName(check);
+
         return _.pick(check.dataValues, ['eventName', 'spPrefix', 'spNo', 'spAlphabet', 'CircleId', 'notificationURL']);
       });
 
@@ -20,10 +24,7 @@ const getChecks = (req, res, next) => {
     });
 };
 
-async function fetchEventName(check) {
-  const event = await check.getEvent();
-  return _.pick(event.dataValues, ['eventName']);
-}
+
 
 const postChecks = (req, res, next) => {
   const { eventName, spPrefix, spNo, spAlphabet, CircleId, notificationURL } = req.body;
