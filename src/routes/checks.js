@@ -7,19 +7,23 @@ const db = require('../models/');
 async function fetchEventName(check) {
   return await check.getEvent().then((event) => event.dataValues.eventName);
 }
+async function fetchCircleName(check) {
+  return await check.getCircle().then((circle) => circle.dataValues.name);
+}
 
 const getChecks = (req, res, next) => {
   return db.Check.findAll()
     .then(async(checks) => {
       let send;
-      console.log(await fetchEventName(checks[0]));
+
       send = {};
       send.title = 'checks';
-      send.checks = _.map(checks, (check) => {
-
-        return _.pick(check.dataValues, ['eventName', 'spPrefix', 'spNo', 'spAlphabet', 'CircleId', 'notificationURL']);
-      });
-
+      send.checks = await Promise.all(_.map(checks, async(check) => {
+        let checkData = _.pick(check.dataValues, ['spPrefix', 'spNo', 'spAlphabet', 'notificationURL']);
+        checkData.eventName = await fetchEventName(check);
+        checkData.circleName = await fetchCircleName(check);
+        return checkData;
+      }));
       res.render('checks', send);
     });
 };

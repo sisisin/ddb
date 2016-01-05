@@ -5,7 +5,7 @@ block content
   p Welcome to #{title}
 
   div(class='row')
-    form(class='col s12')
+    form(class='col s12' action='/checks/new' method='post')
       div(class='row')
         div(class='input-field s6')
           input(id='eventName' name='eventName' type='text' class='validate')
@@ -37,7 +37,7 @@ block content
             - var sp = check.spPrefix + '-' + check.spNo + check.spAlphabet
             #{sp}
           td
-            #{check.CircleId}
+            #{check.circleName}
           td
             a(href='#{check.notificationURL}' target='_blank') #{check.notificationURL}
           td
