@@ -1,9 +1,9 @@
-'strong mode';
-
-import gulp from 'gulp';
-import eslint from 'gulp-eslint';
-import babel from 'gulp-babel';
-import mocha from 'gulp-mocha';
+'strict mode';
+require('babel-core/register');
+const gulp = require('gulp');
+const eslint = require('gulp-eslint');
+const babel = require('gulp-babel');
+const mocha = require('gulp-mocha');
 
 const lintPath = ['./*.js', './src/*.js', './src/routes/*.js', 'test/**/*.js'];
 const testPath = ['./test/**/*.js'];

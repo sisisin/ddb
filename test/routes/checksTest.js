@@ -1,6 +1,6 @@
 /* eslint no-unused-expressions:0 */
-import { expect } from 'chai';
-import sinon from 'sinon';
+const expect = require('chai').expect;
+const sinon = require('sinon');
 const db = require('../../src/models/');
 
 import { getChecks, postChecks } from '../../src/routes/checks';
@@ -30,19 +30,19 @@ describe('getChecks', () => {
       title: 'checks'
       , checks: [
         {
-          eventName: 'コミックマーケット89'
+          eventName: 'コミックマーケット89 3日目'
           , spPrefix: 'シ'
           , spNo: 71
           , spAlphabet: 'a'
-          , CircleId: 1
+          , circleName: 'にのこや'
           , notificationURL: 'http://www.pixiv.net/member.php?id=204506'
         }
         , {
-          eventName: 'コミックマーケット88'
+          eventName: 'コミックマーケット88 3日目'
           , spPrefix: 'シ'
           , spNo: 21
           , spAlphabet: 'a'
-          , CircleId: 1
+          , circleName: 'にのこや'
           , notificationURL: 'http://www.pixiv.net/member.php?id=204506'
         }
       ]
