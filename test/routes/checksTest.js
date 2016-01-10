@@ -1,12 +1,13 @@
 /* eslint no-unused-expressions:0 */
 const expect = require('chai').expect;
 const sinon = require('sinon');
-const db = require('../../src/models/');
 
-import { getChecks, postChecks } from '../../src/routes/checks';
+import { getChecks } from '../../src/routes/checks';
 
 describe('getChecks', () => {
-  let req, res, spy;
+  let req;
+  let res;
+  let spy;
 
   beforeEach(() => {
     req = res = {};
@@ -27,23 +28,23 @@ describe('getChecks', () => {
   });
   it('should called with eventName, spPrefix,etc...', () => {
     const params = {
-      title: 'checks'
-      , checks: [
+      title: 'checks',
+      checks: [
         {
-          eventName: 'コミックマーケット89 3日目'
-          , spPrefix: 'シ'
-          , spNo: 71
-          , spAlphabet: 'a'
-          , circleName: 'にのこや'
-          , notificationURL: 'http://www.pixiv.net/member.php?id=204506'
-        }
-        , {
-          eventName: 'コミックマーケット88 3日目'
-          , spPrefix: 'シ'
-          , spNo: 21
-          , spAlphabet: 'a'
-          , circleName: 'にのこや'
-          , notificationURL: 'http://www.pixiv.net/member.php?id=204506'
+          eventName: 'コミックマーケット89 3日目',
+          spPrefix: 'シ',
+          spNo: 71,
+          spAlphabet: 'a',
+          circleName: 'にのこや',
+          notificationURL: 'http://www.pixiv.net/member.php?id=204506'
+        },
+        {
+          eventName: 'コミックマーケット88 3日目',
+          spPrefix: 'シ',
+          spNo: 21,
+          spAlphabet: 'a',
+          circleName: 'にのこや',
+          notificationURL: 'http://www.pixiv.net/member.php?id=204506'
         }
       ]
     };

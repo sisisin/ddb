@@ -14,17 +14,17 @@ const jq = './node_modules/jQuery/dist';
 const npmJs = [`${mc}/js/materialize.min.js`, `${jq}/jquery.min.js`];
 const npmCss = [`${mc}/css/materialize.min.css`];
 const babelPath = [
-  './bin/**'
-  , './src/*.js'
-  , './src/**/*.js'
+  './bin/**',
+  './src/*.js',
+  './src/**/*.js'
 ];
 
 const watchPath = [
-  ...lintPath
-  , ...testPath
-  , ...jadePath
-  , ...staticPath
-  , ...babelPath
+  ...lintPath,
+  ...testPath,
+  ...jadePath,
+  ...staticPath,
+  ...babelPath
 ];
 
 gulp.task('lint', () => {
@@ -39,7 +39,12 @@ gulp.task('mocha', () => {
     .pipe(mocha({ 'reporter': 'nyan' }));
 });
 
-gulp.task('build', ['build:jade', 'build:babel', 'build:statics', 'build:npm-js', 'build:npm-css']);
+gulp.task('build', [
+  'build:jade',
+  'build:babel',
+  'build:statics',
+  'build:npm-js',
+  'build:npm-css']);
 
 gulp.task('build:jade', () => {
   return gulp.src(jadePath, { 'base': 'src' })

@@ -5,7 +5,9 @@ import sinon from 'sinon';
 import { getCircles } from '../../src/routes/circles';
 
 describe('route circles', () => {
-  let req, res, spy;
+  let req;
+  let res;
+  let spy;
 
   beforeEach(() => {
     req = res = {};
@@ -26,17 +28,17 @@ describe('route circles', () => {
   });
   it('should callsed with name, author, pixivURL', () => {
     const params = {
-      title: 'circles'
-      , circles: [
+      title: 'circles',
+      circles: [
         {
-          name: 'にのこや'
-          , author: 'にのこ'
-          , pixivURL: 'http://www.pixiv.net/member.php?id=204506'
-        }
-        , {
-          name: 'まろん☆まろん'
-          , author: 'まろん☆まろん'
-          , pixivURL: 'http://www.pixiv.net/member.php?id=4727246'
+          name: 'にのこや',
+          author: 'にのこ',
+          pixivURL: 'http://www.pixiv.net/member.php?id=204506'
+        },
+        {
+          name: 'まろん☆まろん',
+          author: 'まろん☆まろん',
+          pixivURL: 'http://www.pixiv.net/member.php?id=4727246'
         }
       ]
     };

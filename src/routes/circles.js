@@ -14,9 +14,9 @@ const getCircles = (req, res, next) => {
       send.title = 'circles';
       send.circles = _.map(circles, (cir) => {
         return {
-          name: cir.dataValues.name
-          , author: cir.dataValues.author
-          , pixivURL: cir.dataValues.pixivURL
+          name: cir.dataValues.name,
+          author: cir.dataValues.author,
+          pixivURL: cir.dataValues.pixivURL
         };
       });
       res.render('circles', send);
@@ -32,7 +32,7 @@ const postCircles = (req, res, next) => {
       res.redirect('/circles');
     })
     .catch((err) => {
-      res.render('index', { title: 'error' });
+      throw err;
     });
 };
 

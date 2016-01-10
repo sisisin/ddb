@@ -6,7 +6,9 @@ import { getIndex } from '../../src/routes/index';
 
 describe('routes GET index', () => {
   it('should respond', () => {
-    let req, res, spy;
+    let req;
+    let res;
+    let spy;
 
     req = {};
     res = {};
