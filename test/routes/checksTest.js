@@ -10,7 +10,8 @@ describe('getChecks', () => {
   let spy;
 
   beforeEach(() => {
-    req = res = {};
+    req = { query: { id: '1' }};
+    res = {};
     spy = res.render = sinon.spy();
   });
   it('should called once', () => {
@@ -24,7 +25,7 @@ describe('getChecks', () => {
       .then(
         () => expect(spy.args[0][0]).to.equal('checks')
         , (err) => expect(err).to.equal(null)
-      );
+        );
   });
   it('should called with eventName, spPrefix,etc...', () => {
     const params = {
@@ -37,22 +38,22 @@ describe('getChecks', () => {
           spAlphabet: 'a',
           circleName: 'にのこや',
           notificationURL: 'http://www.pixiv.net/member.php?id=204506'
-        },
+        }
+      ],
+      eventList: [{
+        eventName: 'コミックマーケット89 3日目',
+        id: 1
+      },
         {
           eventName: 'コミックマーケット88 3日目',
-          spPrefix: 'シ',
-          spNo: 21,
-          spAlphabet: 'a',
-          circleName: 'にのこや',
-          notificationURL: 'http://www.pixiv.net/member.php?id=204506'
-        }
-      ]
+          id: 2
+        }]
     };
 
     return getChecks(req, res)
       .then(
         () => expect(spy.args[0][1]).to.deep.equal(params)
         , (err) => expect(err).to.equal(null)
-      );
+        );
   });
 });

@@ -11,14 +11,23 @@ async function fetchCircleName (check) {
   return await check.getCircle().then((circle) => circle.dataValues.name);
 }
 
-const getChecks = (req, res, next) => {
-  return db.Check.findAll({ where: { eventID: req.query.id }})
-    .then(async function (checks) {
-      let send;
+const getChecks = async function (req, res, next) {
+  let send = {};
 
-      send = {};
-      send.title = 'checks';
-      send.checks = await Promise.all(_.map(checks, async function (check) {
+  send.title = 'checks';
+  send.eventList = await db.Event
+    .findAll({ order: [['eventDate', 'DESC']]})
+    .then((events) => _.map(events, (event) => {
+      return {
+        eventName: event.dataValues.eventName,
+        id: event.dataValues.id
+      };
+    }));
+
+  send.checks = await db.Check
+    .findAll({ where: { eventID: req.query.id }})
+    .then((checks) => {
+      return Promise.all(_.map(checks, async function (check) {
         let checkData = _.pick(check.dataValues,
           ['spPrefix', 'spNo', 'spAlphabet', 'notificationURL']);
 
@@ -26,8 +35,8 @@ const getChecks = (req, res, next) => {
         checkData.circleName = await fetchCircleName(check);
         return checkData;
       }));
-      res.render('checks', send);
     });
+  res.render('checks', send);
 };
 
 const postChecks = (req, res, next) => {
