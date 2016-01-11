@@ -39,7 +39,7 @@ block content
             input(id='spAlphabet' name='spAlphabet' type='text' class='validate')
             label(for='spAlphabet') a
           div(class='input-field col s3')
-            select
+            select(name="eventID")
               option(value="" disabled selected) komike
               each event in eventList
                 option(value="#{event.id}") #{event.eventName}

@@ -41,29 +41,26 @@ const getChecks = async function (req, res, next) {
 
 const postChecks = (req, res, next) => {
   const {
-    eventName,
     spPrefix,
     spNo,
     spAlphabet,
-    CircleId,
+    eventID,
     notificationURL
     } = req.body;
-  const hasAllParams = eventName ||
-    spPrefix ||
+  const hasAllParams = spPrefix ||
     spNo ||
     spAlphabet ||
-    CircleId ||
+    eventID ||
     notificationURL;
  
   if (!hasAllParams) return res.redirect(303, '/circles?err=err');
   
   return db.Check
     .upsert({
-      eventName,
       spPrefix,
       spNo,
       spAlphabet,
-      CircleId,
+      eventID,
       notificationURL })
     .then((check) => {
       res.redirect(303, '/circles');
