@@ -9,41 +9,29 @@ block content
     table(class='striped highlight')
       tr
         thead
-          th space
-          th circle name
-          th url
+          th event name
+          th event date
           th
       tbody
-        each check,i in checks
+        each event,i in events
           tr
             td
-              - var sp = check.spPrefix + '-' + check.spNo + check.spAlphabet
-              #{sp}
+              #{event.eventName}
             td
-              #{check.circleName}
+              #{event.eventDate}
             td
-              a(href='#{check.notificationURL}' target='_blank') link
-            td
-              a(href='/checks/edit') edit data
+              a(href='/events/edit') edit data
 
   div#modal(class="modal")
     form(class='col s12' action='/checks/new' method='post')
       div.modal-content
-        h4 Modal Header
-
-          div(class='input-field')
-            input(id='spPrefix' name='spPrefix' type='text' class='validate')
-            label(for='spPrefix') spPrefix
-          div(class='input-field')
-            input(id='spNo' name='spNo' type='text' class='validate')
-            label(for='spNo') spNo
-          div(class='input-field')
-            input(id='spAlphabet' name='spAlphabet' type='text' class='validate')
-            label(for='spAlphabet') spAlphabet
+        h4 Add Event
           div(class='input-field')
             input(id='eventName' name='eventName' type='text' class='validate')
             label(for='eventName') eventName
-          | url
+          div(class='input-field')
+            input(id='eventDate' name='eventDate' type='date' class='datepicker')
+
           button(class='btn waves-effect waves-light' type='submit' name='action') Submit
             i(class='material-icons') send
       div.modal-footer
@@ -51,4 +39,4 @@ block content
 
   script(type='text/javascript', src='/js/jquery.min.js')
   script(type='text/javascript', src='/js/materialize.min.js')
-  script(type='text/javascript', src='/js/checks.js')
+  script(type='text/javascript', src='/js/events.js')

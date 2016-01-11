@@ -6,6 +6,13 @@ html
     link(type='text/css', rel='stylesheet', href='/css/materialize.min.css', media='screen,projection')
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
   body
+    nav(role="navigation")
+      div(class="nav-wrapper container")
+        a.brand-logo(href="/") doujinDB
+        ul#nav-mobile(class="right hide-on-med-and-down")
+          li
+            a(href="/checks") checks
+          li
+            a(href="/circles") circles
     block content
-    script(type='text/javascript', src='/js/jquery.min.js')
-    script(type='text/javascript', src='/js/materialize.min.js')
+
