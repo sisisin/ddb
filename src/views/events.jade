@@ -22,20 +22,18 @@ block content
             td
               a(href='/events/edit') edit data
 
-  div#modal(class="modal")
+  div.container
     form(class='col s12' action='/checks/new' method='post')
-      div.modal-content
-        h4 Add Event
-          div(class='input-field')
+      div.row
+          div(class='input-field col s5')
             input(id='eventName' name='eventName' type='text' class='validate')
-            label(for='eventName') eventName
-          div(class='input-field')
+            label(for='eventName') event name
+          div(class='input-field col s5')
             input(id='eventDate' name='eventDate' type='date' class='datepicker')
-
-          button(class='btn waves-effect waves-light' type='submit' name='action') Submit
-            i(class='material-icons') send
-      div.modal-footer
-        a(href="#!" class="modal-action modal-close waves-effect waves-green btn-flat") agree
+            label(for='eventDame') event date
+          div(class='input-field col s2')
+            button(class='btn waves-effect waves-light' type='submit' name='action')
+              i(class='material-icons') send
 
   script(type='text/javascript', src='/js/jquery.min.js')
   script(type='text/javascript', src='/js/materialize.min.js')
