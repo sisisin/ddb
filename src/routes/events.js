@@ -5,7 +5,7 @@ const db = require('../models/');
 const moment = require('moment');
 
 const getEvents = (req, res, next) => {
-  return db.Event.findAll()
+  return db.Event.findAll({ order: [['eventDate', 'DESC']]})
     .then((events) => {
       let send = {};
 
@@ -22,44 +22,22 @@ const getEvents = (req, res, next) => {
     });
 };
 
-const postChecks = (req, res, next) => {
-  const {
-    eventName,
-    spPrefix,
-    spNo,
-    spAlphabet,
-    CircleId,
-    notificationURL
-    } = req.body;
-  const hasAllParams = eventName ||
-    spPrefix ||
-    spNo ||
-    spAlphabet ||
-    CircleId ||
-    notificationURL;
+const postEvents = (req, res, next) => {
+  const { eventName, eventDate } = req.body;
+  const hasAllParams = eventName || eventDate;
  
-  if (!hasAllParams) return res.redirect(303, '/circles?err=err');
+  if (!hasAllParams) return res.redirect(303, '/events?err=err');
   
-  return db.Check
-    .upsert({
-      eventName,
-      spPrefix,
-      spNo,
-      spAlphabet,
-      CircleId,
-      notificationURL })
-    .then((check) => {
-      res.redirect(303, '/circles');
-    })
-    .catch((err) => {
-      res.redirect(303, `/circles?err=err&msg=${err}`);
-    });
+  return db.Event
+    .upsert({ eventName, eventDate })
+    .then((check) => res.redirect(303, '/events'))
+    .catch((err) => res.redirect(303, `/events?err=err&msg=${err}`));
 };
 
 
 router.get('/', getEvents);
-router.post('/new', postChecks);
+router.post('/new', postEvents);
 
 
 export { router as events };
-export { getEvents, postChecks };	// for test
+export { getEvents, postEvents };	// for test

@@ -36,13 +36,9 @@ const postCircles = (req, res, next) => {
     });
 };
 
-const newCircles = (req, res, next) => {
-  res.render('circlesNew', { title: 'new' });
-};
 
 router.get('/', getCircles);
 router.post('/', postCircles);
-router.get('/new', newCircles);
 
 export { router as circles };
 export { getCircles };	// for test

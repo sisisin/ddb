@@ -3,9 +3,6 @@ extends layout
 block content
   div.container
     h1= title
-    a(href='/circles/new')
-      button(class='btn waves-effect waves-light blue lighten-5', type='submit', name='action')
-        i(class='material-icons') regster circle
     table(class='striped highlight')
       tr
         thead
@@ -19,8 +16,24 @@ block content
             td #{v.name}
             td #{v.author}
             td
-              a(href='#{v.pixivURL}', target='_blank') #{v.pixivURL}
+              a(href='#{v.pixivURL}', target='_blank') link
             td
               a(href='/circles/edit') edit data
+  div.container
+    div(class='row')
+      form(action='/circles' method='post')
+        div(class='input-field col s3')
+          label(for='name') name
+          input(id='name' type='text' name='name' class='validate')
+        div(class='input-field col s3')
+          label(for='author') author
+          input(id='author' type='text' name='author' class='validate')
+        div(class='input-field col s3')
+          label(for='pixivURL') pixivURL
+          input(id='pixivURL' type='text' name='pixivURL' class='validate')
+        div(class='input-field col s3')
+          button(class='btn waves-effect waves-light' type='submit' name='action')
+            i(class='material-icons') send
+
   script(type='text/javascript', src='/js/jquery.min.js')
   script(type='text/javascript', src='/js/materialize.min.js')
