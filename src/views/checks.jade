@@ -29,27 +29,27 @@ block content
   div.container
     form(action='/checks/new' method='post')
       div.row
-          div(class='input-field col s1')
-            input(id='spPrefix' name='spPrefix' type='text' class='validate')
-            label(for='spPrefix') シ
-          div(class='input-field col s1')
-            input(id='spNo' name='spNo' type='text' class='validate')
-            label(for='spNo') 21
-          div(class='input-field col s1')
-            input(id='spAlphabet' name='spAlphabet' type='text' class='validate')
-            label(for='spAlphabet') a
-          div(class='input-field col s3')
-            select(name="eventID")
-              option(value="" disabled selected) komike
-              each event in eventList
-                option(value="#{event.id}") #{event.eventName}
+        div(class='input-field col s1')
+          input(id='spPrefix' name='spPrefix' type='text' class='validate')
+          label(for='spPrefix') シ
+        div(class='input-field col s1')
+          input(id='spNo' name='spNo' type='text' class='validate')
+          label(for='spNo') 21
+        div(class='input-field col s1')
+          input(id='spAlphabet' name='spAlphabet' type='text' class='validate')
+          label(for='spAlphabet') a
+        div(class='input-field col s3')
+          select(name="eventID")
+            option(value="" disabled selected) komike
+            each circle in circleList
+              option(value="#{circle.id}") #{circle.name}
 
-          div(class='input-field col s3')
-            input(id='notificationURL' name='notificationURL' type='text' class='validate')
-            label(for='notificationURL') event url
-          div(class='input-field col s1')
-            button(class='btn waves-effect waves-light' type='submit' name='action')
-              i(class='material-icons') send
+        div(class='input-field col s3')
+          input(id='notificationURL' name='notificationURL' type='text' class='validate')
+          label(for='notificationURL') event url
+        div(class='input-field col s1')
+          button(class='btn waves-effect waves-light' type='submit' name='action')
+            i(class='material-icons') send
 
   script(type='text/javascript', src='/js/jquery.min.js')
   script(type='text/javascript', src='/js/materialize.min.js')

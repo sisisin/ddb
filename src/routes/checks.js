@@ -1,5 +1,4 @@
 /* eslint new-cap:0 */
-require('babel-polyfill');
 const router = require('express').Router();
 const _ = require('lodash');
 const db = require('../models/');
@@ -15,12 +14,12 @@ const getChecks = async function (req, res, next) {
   let send = {};
 
   send.title = 'checks';
-  send.eventList = await db.Event
-    .findAll({ order: [['eventDate', 'DESC']]})
-    .then((events) => _.map(events, (event) => {
+  send.circleList = await db.Circle
+    .findAll()
+    .then((circles) => _.map(circles, (circle) => {
       return {
-        eventName: event.dataValues.eventName,
-        id: event.dataValues.id
+        name: `${circle.dataValues.name}(${circle.dataValues.author})`,
+        id: circle.dataValues.id
       };
     }));
 

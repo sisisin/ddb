@@ -40,12 +40,12 @@ describe('getChecks', () => {
           notificationURL: 'http://www.pixiv.net/member.php?id=204506'
         }
       ],
-      eventList: [{
-        eventName: 'コミックマーケット89 3日目',
+      circleList: [{
+        name: 'にのこや(にのこ)',
         id: 1
       },
         {
-          eventName: 'コミックマーケット88 3日目',
+          name: 'まろん☆まろん(まろん☆まろん)',
           id: 2
         }]
     };
