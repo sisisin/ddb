@@ -12,7 +12,7 @@ async function fetchCircleName (check) {
 }
 
 const getChecks = (req, res, next) => {
-  return db.Check.findAll()
+  return db.Check.findAll({ where: { eventID: req.query.id }})
     .then(async function (checks) {
       let send;
 

@@ -11,12 +11,13 @@ const getEvents = (req, res, next) => {
 
       send.title = 'events';
       send.events = _.map(events, (event) => {
-        let checkData = {};
+        let data = {};
         let evDate = moment(event.dataValues.eventDate);
 
-        checkData.eventName = event.dataValues.eventName;
-        checkData.eventDate = evDate.format('YYYY/MM/DD');
-        return checkData;
+        data.id = event.dataValues.id;
+        data.eventName = event.dataValues.eventName;
+        data.eventDate = evDate.format('YYYY/MM/DD');
+        return data;
       });
       res.render('events', send);
     });

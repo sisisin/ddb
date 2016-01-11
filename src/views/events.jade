@@ -3,15 +3,13 @@ extends layout
 block content
   div.container
     h1= title
-    a(class="btn-floating btn-large modal-trigger waves-effect waves-light red" href="#modal")
-      i.material-icons add
-
     table(class='striped highlight')
       tr
         thead
           th event name
           th event date
-          th
+          th edit
+          th checks
       tbody
         each event,i in events
           tr
@@ -21,6 +19,8 @@ block content
               #{event.eventDate}
             td
               a(href='/events/edit') edit data
+            td
+              a(href="/checks?id=#{event.id}") checks
 
   div.container
     form(class='col s12' action='/checks/new' method='post')
